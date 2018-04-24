@@ -1,0 +1,14 @@
+<div class="top">
+  <div class="column search">Search: <input type="text" onkeyup={{action filter value='target.value'}}/></div>
+  <div class="column total">Results Count: {{filteredRows.length}}</div>
+</div>
+
+<div class="table-wrapper total-width">
+  {{csv-row row=header class="header"}}
+  {{#ember-collection items=filteredRows
+                      class="collection"
+                      cell-layout=(percentage-columns-layout totalRows columns rowHeight)
+  as |row| }}
+    {{csv-row row=row term=regexTerm class="data"}}
+  {{/ember-collection}}
+</div>

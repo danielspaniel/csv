@@ -1,0 +1,46 @@
+.top {
+  margin: 20px 0;
+}
+
+.top .total {
+  margin-left: 20px;
+}
+
+.header {
+  background: black;
+  color: white;
+  margin: 10px 0;
+}
+
+.header.row {
+  height: 50px;
+}
+
+.header .column {
+  vertical-align: top;
+}
+
+.table-wrapper {
+  position: relative;
+  height: 500px;
+  /*overflow: scroll;*/
+}
+
+.row {
+  border-bottom: solid 1px black;
+}
+
+.column {
+  display: inline-block;
+}
+
+mark {
+  color: red
+}
+
+.collection {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
