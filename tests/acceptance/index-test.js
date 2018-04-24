@@ -6,17 +6,18 @@ import { visit, findAll, fillIn, triggerKeyEvent } from '@ember/test-helpers';
 module('Acceptance | index', function(hooks) {
   setupApplicationTest(hooks);
 
-  function mockCsv(csv) {
+  function mockCsv(header, rows) {
+    const csv = [header, ...rows].join('\n');
+
     return new Pretender(function() {
       this.get('/real-table.csv', () => [200, {}, csv]);
     });
   }
 
   test('show csv', async function(assert) {
-    const header  = 'name,dog name,power',
-          rows    = ['dan bo ban,fido,500', 'eric mo meric,fluffy,250'],
-          testCsv = [header, ...rows].join('\n'),
-          server  = mockCsv(testCsv);
+    const header = 'name,dog name,power',
+          rows   = ['dan bo ban,fido,500', 'eric mo meric,fluffy,250'],
+          server = mockCsv(header, rows);
 
     await visit('/');
 
@@ -27,10 +28,9 @@ module('Acceptance | index', function(hooks) {
   });
 
   test('search csv', async function(assert) {
-    const header  = 'name,dog name,power',
-          rows    = ['dan bo ban,fido,500', 'eric mo meric,fluffy,250'],
-          testCsv = [header, ...rows].join('\n'),
-          server  = mockCsv(testCsv);
+    const header = 'name,dog name,power',
+          rows   = ['dan bo ban,fido,500', 'eric mo meric,fluffy,250'],
+          server = mockCsv(header, rows);
 
     await visit('/');
     await fillIn('.search input', 'an');

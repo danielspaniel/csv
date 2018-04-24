@@ -25,6 +25,15 @@ export default class extends Controller {
   }
 
   @action
+  /**
+   * term can be a regex like:
+   *
+   *    1\.7 -> will match 1.7
+   *    1.7 -> will match 127 since . is a wildcard
+   *    er|si -> will match eric or simon
+   *
+   * @param term
+   */
   filter(term) {
     this.setProperties({term});
     debounce(this, 'filterRows', 300);
